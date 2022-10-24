@@ -76,13 +76,14 @@ export default function Creator() {
       textParent.innerText = textCopy;
       textParent.style.backgroundColor = "black";
       textParent.style.fontSize = "14px";
-      textParent.style.lineHeight = "1.25rem";
+      textParent.style.lineHeight = "10px";
       textParent.style.fontFamily = "Open Sans";
     }, 2000);
   };
   return (
     <div className="text-center text-3xl text-white flex flex-col items-center justify-center relative">
-      <div className="w-full h-full hero absolute top-0 -z-10 blur-sm"></div>
+      <div className="w-full h-screen hero absolute top-0 -z-10 blur-sm"></div>
+      {/*Heading Section */}
       <h1 className="text-yellow-400 os font-bold text-2xl md:text-3xl mt-5">
         Input the Heading
       </h1>
@@ -98,7 +99,7 @@ export default function Creator() {
       >
         Submit
       </button>
-
+      {/*Explanation Section */}
       <h1 className="text-yellow-400 os font-bold text-2xl md:text-3xl mt-5">
         Input the Explanation
       </h1>
@@ -114,6 +115,7 @@ export default function Creator() {
       >
         Submit
       </button>
+      {/*Code Section */}
       <h1 className="text-yellow-400 os font-bold text-2xl md:text-3xl mt-5">
         Input the Code
       </h1>
@@ -129,6 +131,7 @@ export default function Creator() {
       >
         Submit
       </button>
+      {/*Logic Section */}
       <h1 className="text-yellow-400 os font-bold text-2xl md:text-3xl mt-5">
         Input the Logic
       </h1>
@@ -147,8 +150,14 @@ export default function Creator() {
       <div
         onClick={copyToClipboard}
         id="codeBox"
-        className="content text-sm m-3 break-words shadow-xl shadow-black rounded-lg p-4 transition-all ease-in-out duration-500 bg-black hover:cursor-pointer"
+        className="w-3/4 content text-sm mt-10 m-5 break-words shadow-xl shadow-black rounded-lg p-4 transition-all ease-in-out duration-500 bg-black hover:cursor-pointer"
       ></div>
+      {/*Counter Section */}
+      <div className="flex flex-row items-center justify-evenly">
+        <div className=""></div>
+        <div className=""></div>
+        <div className=""></div>
+      </div>
     </div>
   );
 }
