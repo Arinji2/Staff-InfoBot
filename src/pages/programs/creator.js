@@ -68,47 +68,49 @@ export default function Creator() {
     let text = document.getElementById("codeBox").innerText;
     let textCopy = text;
     navigator.clipboard.writeText(text);
-    textParent.style.backgroundColor = "yellowgreen";
+    textParent.style.backgroundColor = "green";
     textParent.style.fontSize = "20px";
     textParent.style.fontFamily = "Silkscreen";
     textParent.innerText = "Copied Successfully!";
     setTimeout(() => {
       textParent.innerText = textCopy;
-      textParent.style.backgroundColor = "grey";
+      textParent.style.backgroundColor = "black";
       textParent.style.fontSize = "14px";
-      textParent.style.lineHeight = "20px";
+      textParent.style.lineHeight = "1.25rem";
       textParent.style.fontFamily = "Open Sans";
     }, 2000);
   };
   return (
-    <div className="text-center text-3xl text-white flex flex-col items-center justify-center">
+    <div className="text-center text-3xl text-white flex flex-col items-center justify-center relative">
+      <div className="w-full h-full hero absolute top-0 -z-10 blur-sm"></div>
       <h1 className="text-yellow-400 os font-bold text-2xl md:text-3xl mt-5">
         Input the Heading
       </h1>
       <input
         placeholder="Heading..."
         id="heading"
-        className="rounded-md p-1  shadow-lg shadow-black content text-lg text-black outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
+        className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
       ></input>
       <br></br>
       <button
         onClick={inputHeading}
-        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:shadow-md hover:shadow-black os"
+        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:scale-90 os bg-slate-600 transition-all ease-out duration-200"
       >
         Submit
       </button>
+
       <h1 className="text-yellow-400 os font-bold text-2xl md:text-3xl mt-5">
         Input the Explanation
       </h1>
       <input
         placeholder="Explanation..."
         id="explanation"
-        className="rounded-md p-1 m-2 shadow-lg shadow-black content text-lg text-black outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
+        className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
       ></input>
       <br></br>
       <button
         onClick={inputExplanation}
-        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:shadow-md hover:shadow-black os"
+        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:scale-90 os bg-slate-600 transition-all ease-out duration-200"
       >
         Submit
       </button>
@@ -118,12 +120,12 @@ export default function Creator() {
       <input
         placeholder="Code..."
         id="code"
-        className="rounded-md p-1 m-2 shadow-lg shadow-black content text-lg text-black outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
+        className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
       ></input>
       <br></br>
       <button
         onClick={inputCode}
-        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:shadow-md hover:shadow-black os"
+        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:scale-90 os bg-slate-600 transition-all ease-out duration-200"
       >
         Submit
       </button>
@@ -133,19 +135,19 @@ export default function Creator() {
       <input
         placeholder="Logic..."
         id="logic"
-        className="rounded-md p-1 m-2 shadow-lg shadow-black content text-lg text-black outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
+        className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
       ></input>
       <br></br>
       <button
         onClick={inputLogic}
-        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:shadow-md hover:shadow-black os"
+        className=" p-2 rounded-lg text-xl shadow-black shadow-lg hover:scale-90 os bg-slate-600 transition-all ease-out duration-200"
       >
         Submit
       </button>
       <div
         onClick={copyToClipboard}
         id="codeBox"
-        className="content text-sm m-3 break-words shadow-xl shadow-black rounded-lg p-4 transition-all ease-in-out duration-500"
+        className="content text-sm m-3 break-words shadow-xl shadow-black rounded-lg p-4 transition-all ease-in-out duration-500 bg-black hover:cursor-pointer"
       ></div>
     </div>
   );

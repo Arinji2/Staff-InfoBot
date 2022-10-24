@@ -3,6 +3,6 @@
   background-size: cover;
 }
 
-body {
-  background-color: gray;
+html {
+  overflow-x: hidden;
 }
