@@ -2,3 +2,7 @@
   background-image: url("../assets/pictures/Hero.png");
   background-size: cover;
 }
+
+body {
+  background-color: gray;
+}

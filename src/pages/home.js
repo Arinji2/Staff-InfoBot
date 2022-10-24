@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../assets/pictures/Hero.png";
+
 import "./pages.css";
 function Home() {
   return (
