@@ -6,12 +6,18 @@ import {
   headBoilerPlate,
   logicBoilerPlate,
 } from "../programs/boilerplate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckCircle,
+  faTimesCircle,
+} from "@fortawesome/fontawesome-free-regular";
+import { Oval } from "react-loader-spinner";
 export default function Creator() {
   const [head, setHead] = useState("");
-  const [headItems] = useState([]);
-  const [explainItems] = useState([]);
-  const [logicItems] = useState([]);
-  const [codeItems] = useState([]);
+  const [headComplete, setHeadComplete] = useState(false);
+  const [explainComplete, setExplainComplete] = useState(false);
+  const [codeComplete, setCodeComplete] = useState(false);
+  const [logicComplete, setLogicComplete] = useState(false);
   const [mainItems] = useState([]);
   const [clicked, setClicked] = useState(false);
 
@@ -28,12 +34,14 @@ export default function Creator() {
             tag.appendChild(content);
             parent.appendChild(tag);
           });
-        }, 200);
+        }, 100);
       }, 2000);
     }
   });
 
   const inputHeading = () => {
+    setHeadComplete(true);
+    let headItems = [];
     let headTemp = document.getElementById("heading").value;
     setHead(document.getElementById("heading").value);
     let parent = document.getElementById("codeBox");
@@ -47,6 +55,8 @@ export default function Creator() {
     });
   };
   const inputExplanation = () => {
+    setExplainComplete(true);
+    let explainItems = [];
     let explain = document.getElementById("explanation").value;
     let parent = document.getElementById("codeBox");
     explainItems.push("<h3>" + explain + "</h3>");
@@ -61,6 +71,8 @@ export default function Creator() {
   };
 
   const inputCode = () => {
+    setCodeComplete(true);
+    let codeItems = [];
     let tempCodeItems = [];
     let code = document.getElementById("code").value;
     let parent = document.getElementById("codeBox");
@@ -77,6 +89,8 @@ export default function Creator() {
     });
   };
   const inputLogic = () => {
+    setLogicComplete(true);
+    let logicItems = [];
     let logic = document.getElementById("logic").value;
     let parent = document.getElementById("codeBox");
     logicBoilerPlate(logicItems, logic, head);
@@ -107,6 +121,30 @@ export default function Creator() {
           className="w-10/12 m-4 content text-lg break-words shadow-xl shadow-white rounded-lg p-4 transition-all ease-in-out duration-500 bg-green-600 hover:cursor-pointer relative"
         >
           Successfully Copied To clipboard
+        </div>
+      );
+  };
+  const iconRender = (option) => {
+    if (option === 1) {
+      return (
+        <div className="relative flex flex-col items-center justify-center text-green-600">
+          <Oval
+            className="absolute top-0"
+            color="yellow"
+            secondaryColor="white"
+          ></Oval>
+          <FontAwesomeIcon icon={faCheckCircle} className="absolute " />
+        </div>
+      );
+    } else
+      return (
+        <div className="relative flex flex-col items-center justify-center text-red-600">
+          <Oval
+            className="absolute top-0"
+            color="yellow"
+            secondaryColor="white"
+          ></Oval>
+          <FontAwesomeIcon icon={faTimesCircle} className="absolute " />
         </div>
       );
   };
@@ -179,10 +217,23 @@ export default function Creator() {
         </button>
       </div>
       {/*Counter Section */}
-      <div className="flex flex-row items-center justify-evenly">
-        <div className=""></div>
-        <div className=""></div>
-        <div className=""></div>
+      <div className="flex flex-row items-center justify-evenly mt-5 w-10/12 gap-5 flex-wrap">
+        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
+          <h3 className="os text-2xl">Heading</h3>
+          {headComplete ? iconRender(1) : iconRender(0)}
+        </div>
+        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
+          <h3 className="os text-2xl">Explain</h3>
+          {explainComplete ? iconRender(1) : iconRender(0)}
+        </div>
+        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
+          <h3 className="os text-2xl">Code</h3>
+          {codeComplete ? iconRender(1) : iconRender(0)}
+        </div>
+        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
+          <h3 className="os text-2xl">Logic</h3>
+          {logicComplete ? iconRender(1) : iconRender(0)}
+        </div>
       </div>
       {clicked ? choiceRender(0) : choiceRender(1)}
     </div>
