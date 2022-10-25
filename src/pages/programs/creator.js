@@ -156,6 +156,7 @@ export default function Creator() {
           Input the Heading
         </h1>
         <input
+          autoComplete="off"
           placeholder="Heading..."
           id="heading"
           className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
@@ -172,6 +173,7 @@ export default function Creator() {
           Input the Explanation
         </h1>
         <input
+          autoComplete="off"
           placeholder="Explanation..."
           id="explanation"
           className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
@@ -188,6 +190,7 @@ export default function Creator() {
           Input the Code
         </h1>
         <input
+          autoComplete="off"
           placeholder="Code..."
           id="code"
           className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
@@ -204,6 +207,7 @@ export default function Creator() {
           Input the Logic
         </h1>
         <input
+          autoComplete="off"
           placeholder="Logic..."
           id="logic"
           className="rounded-md p-1 bg-transparent shadow-lg shadow-black content text-lg text-white outline-none scale-90 md:hover:scale-100 md:focus:scale-100 hover:shadow-md focus:shadow-md hover:shadow-yellow-400 focus:shadow-yellow-400 w-screen md:w-3/12 transition-all ease-in-out duration-500"
