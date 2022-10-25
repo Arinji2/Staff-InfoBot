@@ -25,8 +25,6 @@ export default function Creator() {
 
   useEffect(() => {
     if (clicked === true) {
-      let parent = document.getElementById("codeBox");
-
       setTimeout(() => {
         setClicked(false);
       }, 2000);
