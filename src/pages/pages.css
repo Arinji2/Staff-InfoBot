@@ -1,6 +1,7 @@
 .hero {
-  background-image: url("../assets/pictures/Hero.png");
+  background-image: url("../assets/pictures/Hero-Blur.png");
   background-size: cover;
+  background-position: 50% 50%;
 }
 
 html {
