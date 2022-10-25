@@ -3,7 +3,13 @@
   background-size: cover;
   background-position: 50% 50%;
 }
+.contentPic {
+  background-image: url("../assets/pictures/phone.png");
+  background-size: cover;
+  background-position: 50% 50%;
+}
 
 html {
   overflow-x: hidden;
+  border-radius: 0.5rem;
 }

@@ -10,8 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
   faTimesCircle,
+  faPaperPlane,
 } from "@fortawesome/fontawesome-free-regular";
 import { Oval } from "react-loader-spinner";
+
 export default function Creator() {
   const [head, setHead] = useState("");
   const [headComplete, setHeadComplete] = useState(false);
@@ -27,14 +29,6 @@ export default function Creator() {
 
       setTimeout(() => {
         setClicked(false);
-        setTimeout(() => {
-          mainItems.forEach((e) => {
-            let tag = document.createElement("p");
-            let content = document.createTextNode(e);
-            tag.appendChild(content);
-            parent.appendChild(tag);
-          });
-        }, 100);
       }, 2000);
     }
   });
@@ -114,15 +108,19 @@ export default function Creator() {
           className="w-10/12 m-4 content text-sm break-words shadow-xl shadow-white rounded-lg p-4 transition-all ease-in-out duration-500 bg-slate-900 hover:cursor-pointer relative"
         ></div>
       );
-    } else
+    } else {
+      navigator.clipboard.writeText(
+        document.getElementById("codeBox").innerText
+      );
       return (
         <div
           id="codeBox"
           className="w-10/12 m-4 content text-lg break-words shadow-xl shadow-white rounded-lg p-4 transition-all ease-in-out duration-500 bg-green-600 hover:cursor-pointer relative"
         >
-          Successfully Copied To clipboard
+          <h1 className="os font-bold text-2xl">Copied to Clipboard</h1>
         </div>
       );
+    }
   };
   const iconRender = (option) => {
     if (option === 1) {
@@ -150,7 +148,7 @@ export default function Creator() {
   };
   return (
     <div className="text-center text-3xl text-white flex flex-col items-center justify-center -z-20">
-      <div className="w-full h-fit hero relative">
+      <div className="w-full h-fit contentPic relative rounded-lg">
         {/*Heading Section */}
         <h1 className="text-yellow-400 os font-bold text-2xl md:text-3xl mt-5">
           Input the Heading
@@ -222,24 +220,31 @@ export default function Creator() {
       </div>
       {/*Counter Section */}
       <div className="flex flex-row items-center justify-evenly mt-5 w-10/12 gap-5 flex-wrap">
-        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
-          <h3 className="os text-2xl">Heading</h3>
+        <div className="w-fit h-fit      md:w-36 md:h-36 text-black p-3 shadow-lg shadow-black rounded-lg">
+          <h3 className="os text-lg md:text-2xl">Heading</h3>
           {headComplete ? iconRender(1) : iconRender(0)}
         </div>
-        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
-          <h3 className="os text-2xl">Explain</h3>
+        <div className="w-fit h-fit      md:w-36 md:h-36 text-black p-3 shadow-lg shadow-black rounded-lg">
+          <h3 className="os text-lg md:text-2xl">Explain</h3>
           {explainComplete ? iconRender(1) : iconRender(0)}
         </div>
-        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
+        <div className="w-fit h-fit      md:w-36 md:h-36 text-black p-3 shadow-lg shadow-black rounded-lg">
           <h3 className="os text-2xl">Code</h3>
           {codeComplete ? iconRender(1) : iconRender(0)}
         </div>
-        <div className="w-fit h-fit text-black p-3 shadow-lg shadow-black rounded-lg">
+        <div className="w-fit h-fit      md:w-36 md:h-36 text-black p-3 shadow-lg shadow-black rounded-lg">
           <h3 className="os text-2xl">Logic</h3>
           {logicComplete ? iconRender(1) : iconRender(0)}
         </div>
       </div>
       {clicked ? choiceRender(0) : choiceRender(1)}
+      <div className="text-black text-2xl shadow-black shadow-lg p-3 rounded-lg">
+        <a href="mailTo:articles@infobot.uk">
+          <h1>Email your Article</h1>
+          <FontAwesomeIcon icon={faPaperPlane} />
+        </a>
+      </div>
+      <p className="mb-20"></p>
     </div>
   );
 }
