@@ -13,3 +13,8 @@ html {
   overflow-x: hidden;
   border-radius: 0.5rem;
 }
+
+input#image {
+  position: fixed;
+  top: -100px;
+}

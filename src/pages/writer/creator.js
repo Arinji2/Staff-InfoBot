@@ -5,7 +5,7 @@ import {
   explainBoilerPlate,
   headBoilerPlate,
   logicBoilerPlate,
-} from "../programs/boilerplate";
+} from "./boilerplate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
@@ -13,6 +13,7 @@ import {
   faPaperPlane,
 } from "@fortawesome/fontawesome-free-regular";
 import { Oval } from "react-loader-spinner";
+import { auth } from "../../firebase-config";
 
 export default function Creator() {
   const [head, setHead] = useState("");
@@ -24,11 +25,12 @@ export default function Creator() {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    if (clicked === true) {
-      setTimeout(() => {
-        setClicked(false);
-      }, 2000);
-    }
+    if (auth)
+      if (clicked === true) {
+        setTimeout(() => {
+          setClicked(false);
+        }, 2000);
+      }
   });
 
   const inputHeading = () => {

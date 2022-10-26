@@ -3,11 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faCheckCircle } from "@fortawesome/fontawesome-free-regular";
 import { faCode, faUserTie } from "@fortawesome/fontawesome-free-solid";
 import { auth, db } from "../firebase-config";
-import {
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import "./pages.css";
 function MenuSelector() {
