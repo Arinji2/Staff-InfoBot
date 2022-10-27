@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faCheckCircle } from "@fortawesome/fontawesome-free-regular";
 import { faCode, faUserTie } from "@fortawesome/fontawesome-free-solid";
-import { auth, db } from "../firebase-config";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getDoc, doc } from "firebase/firestore";
+import { Oval } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 import "./pages.css";
-function MenuSelector() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [docObj, setDocObj] = useState({});
+function MenuSelector({ docObj }) {
   const [writer, setWriter] = useState(false);
   const [verifier, setVerifier] = useState(false);
   const [developer, setDeveloper] = useState(false);
@@ -23,34 +20,15 @@ function MenuSelector() {
     }
   }, [docObj]);
 
-  const loginwithGoogle = () => {
-    const googleProvider = new GoogleAuthProvider();
-    signInWithPopup(auth, googleProvider)
-      .then(() => {
-        setIsLoggedIn(true);
-        getDocs();
-      })
-      .catch((error) => {
-        console.log("Error" + error);
-      });
-  };
-  const getDocs = async () => {
-    const docRef = doc(db, "users", auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
-    setDocObj(docSnap.data());
-  };
   const showBox = (option) => {
     if (option === 1) {
       return (
-        <div
-          className="w-40 h-20 flex flex-col items-center text-black shadow-black shadow-lg p-2 bg-blue-600 rounded-lg hover:scale-90 transition-all duration-300 ease-in-out hover:cursor-pointer"
-          onClick={() => {
-            window.location.assign("/CreateProgram");
-          }}
-        >
-          <h1>Writer</h1>
-          <FontAwesomeIcon className="" icon={faEdit} />
-        </div>
+        <Link to="/WriterHome" state={{ docObj: docObj }}>
+          <div className="w-40 h-20 flex flex-col items-center text-black shadow-black shadow-lg p-2 bg-blue-600 rounded-lg hover:scale-90 transition-all duration-300 ease-in-out hover:cursor-pointer">
+            <h1>Writer</h1>
+            <FontAwesomeIcon className="" icon={faEdit} />
+          </div>
+        </Link>
       );
     } else if (option === 2) {
       return (
@@ -68,10 +46,12 @@ function MenuSelector() {
       );
     } else if (option === 4) {
       return (
-        <div className="w-40 h-20 flex flex-col items-center text-black shadow-black shadow-lg p-2 bg-white rounded-lg hover:scale-90 transition-all duration-300 ease-in-out hover:cursor-pointer">
-          <h1>Executive</h1>
-          <FontAwesomeIcon className="" icon={faUserTie} />
-        </div>
+        <Link to="/Uploader" state={{ docObj: docObj }}>
+          <div className="w-40 h-20 flex flex-col items-center text-black shadow-black shadow-lg p-2 bg-white rounded-lg hover:scale-90 transition-all duration-300 ease-in-out hover:cursor-pointer">
+            <h1>Executive</h1>
+            <FontAwesomeIcon className="" icon={faUserTie} />
+          </div>
+        </Link>
       );
     }
   };
@@ -90,14 +70,23 @@ function MenuSelector() {
       );
     } else {
       return (
-        <div>
-          <h1 className="os text-yellow-400 text-3xl">Login to Access</h1>
-          <button
-            className="mt-10 text-2xl  bg-white scale-90 hover:scale-100 hover:bg-yellow-400  text-black-950 rounded-lg p-3 transition-all ease-in-out duration-300 os"
-            onClick={loginwithGoogle}
-          >
-            Login with Google
-          </button>
+        <div className=" flex flex-col items-center justify-center">
+          <h1 className="text-5xl md:text-8xl pt-10 text-yellow-400 text-center">
+            InfoBot Staff
+          </h1>
+          <p className="p-10"></p>
+          <div className="flex flex-col items-center justify-center">
+            <button className="mt-10 text-2xl  os text-white scale-90 h  text-black-950 rounded-lg p-3 transition-all ease-in-out duration-300 os">
+              Checking for Login...
+            </button>
+
+            <Oval
+              width="100"
+              height="100"
+              secondaryColor="transparent"
+              color="white"
+            />
+          </div>
         </div>
       );
     }
@@ -108,7 +97,7 @@ function MenuSelector() {
       <div className="absolute h-screen hero w-screen -z-10 blur-sm"></div>
       <p className="p-20"></p>
       <div className=" flex flex-col items-center justify-center m-4 text-center">
-        {isLoggedIn ? menuShow(1) : menuShow(0)}
+        {docObj.uid !== undefined ? menuShow(1) : menuShow(0)}
       </div>
     </div>
   );

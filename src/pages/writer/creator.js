@@ -13,9 +13,8 @@ import {
   faPaperPlane,
 } from "@fortawesome/fontawesome-free-regular";
 import { Oval } from "react-loader-spinner";
-import { auth } from "../../firebase-config";
 
-export default function Creator() {
+export default function Creator({ docObj }) {
   const [head, setHead] = useState("");
   const [headComplete, setHeadComplete] = useState(false);
   const [explainComplete, setExplainComplete] = useState(false);
@@ -25,12 +24,13 @@ export default function Creator() {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    if (auth)
-      if (clicked === true) {
-        setTimeout(() => {
-          setClicked(false);
-        }, 2000);
-      }
+    if (clicked === true) {
+      setTimeout(() => {
+        setClicked(false);
+      }, 2000);
+    }
+
+    if (docObj.writer !== true) window.location.assign("/Error?Perms");
   });
 
   const inputHeading = () => {

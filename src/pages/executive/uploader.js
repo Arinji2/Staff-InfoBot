@@ -1,7 +1,6 @@
 import "../pages.css";
 import React, { useState, useEffect } from "react";
-import { storage, auth, db } from "../../firebase-config";
-import { getDoc, doc } from "firebase/firestore";
+import { storage, auth } from "../../firebase-config";
 import { uploadBytes, ref } from "firebase/storage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,7 +9,7 @@ import {
 } from "@fortawesome/fontawesome-free-solid";
 import { faCheckCircle } from "@fortawesome/fontawesome-free-regular";
 import { ThreeCircles } from "react-loader-spinner";
-export default function Uploader() {
+export default function Uploader({ docObj }) {
   const [file, setFile] = useState();
   const [fileName, setFileName] = useState("");
   const [questions, setQuestions] = useState();
@@ -49,19 +48,6 @@ export default function Uploader() {
     setReceived(true);
   }
 
-  useEffect(() => {
-    if (auth.currentUser === null) {
-      setTimeout(() => {
-        getDocs();
-      }, 2000);
-    } else getDocs();
-  });
-  const getDocs = async () => {
-    const docRef = doc(db, "users", auth.currentUser.uid);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.data().executive === false)
-      window.location.assign("/Error?Perms");
-  };
   const uploadStatus = (option) => {
     if (option === 1)
       return (
@@ -88,7 +74,7 @@ export default function Uploader() {
             <h2
               className="text-xl  os w-fit bg-white text-yellow-400 p-2 rounded-lg scale-90 hover:scale-100 focus:scale-100 transition-all ease-in-out duration-300 hover:cursor-pointer"
               onClick={() => {
-                window.location.assign("/menu");
+                window.location.assign("/");
               }}
             >
               Back to Menu <FontAwesomeIcon icon={faArrowAltCircleLeft} />
@@ -167,6 +153,9 @@ export default function Uploader() {
       );
     } else return <div></div>;
   };
+  useEffect(() => {
+    if (docObj.executive !== true) window.location.assign("/Error?Perms");
+  });
   return (
     <div className="text-center text-3xl text-white flex flex-col items-center justify-center -z-20">
       <div className="w-full h-screen contentPic relative rounded-lg">
