@@ -27,11 +27,9 @@ export const explainBoilerPlate = (explainItems, explain, head) => {
 export const logicBoilerPlate = (logicItems, logic, head) => {
   logicItems.push("</div>");
   logicItems.push("</div>");
-  logicItems.push("</div>");
   logicItems.push(
     '<h3 class="logic-text" id="animate-info">' + logic + "</h3>"
   );
-  logicItems.push("</div>");
   logicItems.push('<script src="scripts.js"></script>');
   logicItems.push("</body>");
   logicItems.push("</html>");
