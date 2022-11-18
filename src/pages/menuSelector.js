@@ -39,10 +39,12 @@ function MenuSelector({ docObj }) {
       );
     } else if (option === 3) {
       return (
-        <div className="w-40 h-20 flex flex-col items-center text-black shadow-black shadow-lg p-2 bg-green-400 rounded-lg hover:scale-90 transition-all duration-300 ease-in-out hover:cursor-pointer">
-          <h1>Developer</h1>
-          <FontAwesomeIcon className="" icon={faCode} />
-        </div>
+        <Link to="/DevHome" state={{ docObj: docObj }}>
+          <div className="w-40 h-20 flex flex-col items-center text-black shadow-black shadow-lg p-2 bg-green-400 rounded-lg hover:scale-90 transition-all duration-300 ease-in-out hover:cursor-pointer">
+            <h1>Developer</h1>
+            <FontAwesomeIcon className="" icon={faCode} />
+          </div>
+        </Link>
       );
     } else if (option === 4) {
       return (

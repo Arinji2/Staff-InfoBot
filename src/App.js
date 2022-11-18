@@ -8,6 +8,9 @@ import MenuSelector from "./pages/menuSelector";
 import Choose from "./pages/writer/choose";
 import Creator from "./pages/writer/creator";
 import WHome from "./pages/writer/home";
+import DHome from "./pages/developer/home";
+import DevUploader from "./pages/developer/uploader";
+
 function App() {
   const [docObj, setDocObj] = useState({});
   const loginwithGoogle = () => {
@@ -44,6 +47,11 @@ function App() {
           <Route
             path="/menu"
             element={<MenuSelector docObj={docObj} />}
+          ></Route>
+          <Route path="/DevHome" element={<DHome docObj={docObj} />}></Route>
+          <Route
+            path="/DevUploader"
+            element={<DevUploader docObj={docObj} />}
           ></Route>
         </Routes>
       </Router>
