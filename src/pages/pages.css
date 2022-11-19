@@ -28,3 +28,9 @@ input#image {
   position: fixed;
   top: -100px;
 }
+
+.icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}

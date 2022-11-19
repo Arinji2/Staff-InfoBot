@@ -96,7 +96,6 @@ export default function Uploader({ docObj }) {
             onChange={(event) => {
               event.target.value = event.target.value.toLowerCase().trim();
               setFileName(event.target.value);
-              console.log();
             }}
           ></input>
           <br></br>
