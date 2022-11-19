@@ -142,7 +142,7 @@ export default function Uploader({ docObj }) {
                   </div>
                   <div
                     onClick={() => {
-                      setChapter("arrays");
+                      setChapter("array");
                       setChapterSelected(true);
                     }}
                   >
