@@ -24,6 +24,10 @@ export default function Uploader({ docObj }) {
   const [uploading, setUploading] = useState(false);
   const [indexing, setIndexing] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
+
+  const [error, setError] = useState(false);
+  const [errorCode, setErrorCode] = useState(0);
 
   const handleUpload = () => {
     setLoading(true);
@@ -53,12 +57,24 @@ export default function Uploader({ docObj }) {
     }).then(() => {
       setTimeout(() => {
         setIndexing(false);
-        setLoading(false);
-        clearSelections();
+        setComplete(true);
+        setTimeout(() => {
+          setComplete(false);
+          setLoading(false);
+          clearSelections();
+        }, 500);
       }, 1000);
     });
   };
-
+  const checkForErrors = () => {
+    if (chapterSelected === false) {
+      setError(true);
+      setErrorCode(1);
+    } else if (name.length === 0) {
+      setError(true);
+      setErrorCode(2);
+    } else handleUpload();
+  };
   const clearSelections = () => {
     setChapter(false);
     setChapterSelected(false);
@@ -258,11 +274,13 @@ export default function Uploader({ docObj }) {
         <div className="flex flex-col items-center justify-center mt-20">
           <p
             className=" os text-2xl bg-green-500 text-white border-2 border-green-500 hover:scale-125  p-2 rounded-lg  transition-all ease-in-out duration-200 mb-5"
-            onClick={handleUpload}
+            onClick={checkForErrors}
           >
             Start Uploading <FontAwesomeIcon icon={faRocket} />
           </p>
         </div>
+        <p className="mb-20"></p>
+        {error ? <Error errorCode={errorCode} /> : <></>}
         <p className="mb-20"></p>
       </div>
       <div
@@ -282,10 +300,47 @@ export default function Uploader({ docObj }) {
           <Triangle color="green" height="300" width="300" />
           <h2 className="os text-white text-3xl text-center">Indexing Files</h2>
         </div>
+        <div
+          className={
+            complete ? "flex flex-col items-center justify-center" : "hidden"
+          }
+        >
+          <div className="relative">
+            <Triangle color="green" height="300" width="300" />
+
+            <FontAwesomeIcon
+              className="text-5xl text-green-400 absolute  icon"
+              icon={faCheckCircle}
+            />
+          </div>
+          <h2 className="os text-white text-3xl text-center">
+            Successfully Uploaded Files
+          </h2>
+        </div>
       </div>
     </div>
   );
 }
+
+const Error = ({ errorCode }) => {
+  return (
+    <div className="flex flex-col items-center justify-center  w-screen h-fit os">
+      <div className="p-2 rounded-lg bg-red-600 text-center">
+        <h1 className="text-2xl text-white">Error While Uploading</h1>
+        <p>{`Error Code: ${errorCode}`}</p>
+        {errorCode === 1 ? (
+          <h1 className="text-white text-xl">
+            Chapter Not Selected, Please Select a Chapter
+          </h1>
+        ) : (
+          <h1 className="text-white text-xl">
+            A value is missing, Please check the counters
+          </h1>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const Chapters = ({ name }) => {
   return (
