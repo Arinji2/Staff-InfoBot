@@ -19,7 +19,7 @@ export default function Uploader({ docObj }) {
   const [code, setCode] = useState("");
   const [logic, setLogic] = useState("");
   const [chapter, setChapter] = useState("patterns");
-  const [chapterSelected, setChapterSelected] = useState(false);
+  const [chapterSelected, setChapterSelected] = useState(true);
 
   const [uploading, setUploading] = useState(false);
   const [indexing, setIndexing] = useState(false);
