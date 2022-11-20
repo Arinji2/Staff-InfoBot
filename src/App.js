@@ -10,7 +10,7 @@ import Creator from "./pages/writer/creator";
 import WHome from "./pages/writer/home";
 import DHome from "./pages/developer/home";
 import DevUploader from "./pages/developer/uploader";
-
+import DevUploader2 from "./pages/developer/patterns";
 function App() {
   const [docObj, setDocObj] = useState({});
   const loginwithGoogle = () => {
@@ -52,6 +52,10 @@ function App() {
           <Route
             path="/DevUploader"
             element={<DevUploader docObj={docObj} />}
+          ></Route>
+          <Route
+            path="/DevUploader2"
+            element={<DevUploader2 docObj={docObj} />}
           ></Route>
         </Routes>
       </Router>
