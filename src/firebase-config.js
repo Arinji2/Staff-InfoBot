@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyBidIYxmER28Jqw4ztc_OEydKbpFN88oBk",
-  authDomain: "auth.infobot.uk",
+  authDomain: "auth.infobot.tech",
   projectId: "auth-2216a",
   storageBucket: "auth-2216a.appspot.com",
   messagingSenderId: "83891577277",
